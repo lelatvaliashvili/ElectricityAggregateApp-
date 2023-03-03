@@ -1,4 +1,5 @@
-﻿using Electricity.Domain.Models;
+﻿using Electricity.Domain.Entities;
+using Electricity.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace Electricity.Domain.Interfaces
     {
         Task<IReadOnlyList<ElectricityConsumptionAggregate>> GetAllAsync(CancellationToken cancellationToken = default);
 
-        Task SaveElectricityConsumptionAggregatesAsync(IEnumerable<ElectricityConsumptionAggregate> aggregateList);
+        Task SaveElectricityConsumptionAggregatesAsync(IEnumerable<ElectricityData> aggregateList);
     }
 }

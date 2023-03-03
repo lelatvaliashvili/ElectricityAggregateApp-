@@ -28,18 +28,17 @@ namespace Electricity.Infrastructure.Services
             _logger.LogInformation("Retrieved {Count} electricity consumption aggregates from the database", electricityData.Count);
 
             var electricityAggregates = _mapper.Map<List<ElectricityConsumptionAggregate>>(electricityData);
+
+            _logger.LogInformation("Mapped {Count} electricity consumption aggregates to ElectricityConsumptionAggregate", electricityData.Count);
+
             return electricityAggregates;
         }
 
-        public async Task SaveElectricityConsumptionAggregatesAsync(IEnumerable<ElectricityConsumptionAggregate> aggregateList)
+        public async Task SaveElectricityConsumptionAggregatesAsync(IEnumerable<ElectricityData> aggregateList)
         {
             var electricityAggregates = _mapper.Map<List<ElectricityData>>(aggregateList);
-            var distinctList = electricityAggregates
-                .GroupBy(e => new { e.Regions })
-                .Select(g => g.First())
-                .ToList();
 
-            foreach (var aggregate in distinctList)
+            foreach (var aggregate in electricityAggregates)
             {
                 var existingEntity = _dbContext.Set<ElectricityData>()
                     .FirstOrDefault(e => e.Regions == aggregate.Regions);
