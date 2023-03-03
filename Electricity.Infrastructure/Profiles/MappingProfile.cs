@@ -17,10 +17,7 @@ namespace Electricity.Infrastructure.Profiles
                     .ForMember(dest => dest.Region, opt => opt.MapFrom(src => src.Regions))
                     .ForMember(dest => dest.TotalPositive, opt => opt.MapFrom(src => src.PPlus))
                     .ForMember(dest => dest.TotalNegative, opt => opt.MapFrom(src => src.PMinus))
-                    .ForMember(dest => dest.TimeStamp, opt => opt.MapFrom(src => src.Timestamp))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                    .ForMember(dest => dest.OBJ_NUMERIS, opt => opt.MapFrom(src => src.OBJ_NUMERIS))
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                     .ReverseMap();
         }
     }
